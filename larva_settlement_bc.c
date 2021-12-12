@@ -59,7 +59,7 @@ DEFINE_DPM_BC(larva_settle,tp,t,f,f_normal,dim)
         /* get cell where the tracked particle is */
         tau = C_STORAGE_R(c,t,SV_WALL_SHEAR); 
 
-        if(tau > 0.01) /* REFLECT IF SHEAR STRESS HIGHER THAN THE CRITICAL SHEAR STRESS - here 0.1Pa */
+        if(tau > 0.1) /* REFLECT IF SHEAR STRESS HIGHER THAN THE CRITICAL SHEAR STRESS - here 0.1Pa */
         {
             /* Calculate angle of incidence */
 	        alpha = M_PI/2. - acos(MAX(-1.,MIN(1.,NV_DOT(normal,TP_VEL(tp))/
@@ -94,7 +94,7 @@ DEFINE_DPM_BC(larva_settle,tp,t,f,f_normal,dim)
         }
         else
         {
-            return PATH_ABORT; /* TRAP IF LESS THAT CRITICAL SHEAR STRESS */
+            return PATH_ABORT; /* TRAP IF LESS THAN CRITICAL SHEAR STRESS */
         }
     }
 
